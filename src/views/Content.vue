@@ -33,10 +33,19 @@
         </span>
       </button>
 
+      <!-- Global scroll indicator (sticks to entire content) -->
+  <a href="#gallery" aria-label="Scroll down"
+     class="fixed bottom-5 left-1/2 -translate-x-1/2 text-yellow-300 z-20 transition-opacity duration-200"
+     :class="{ 'opacity-0 pointer-events-none': atBottom }">
+        <svg xmlns="http://www.w3.org/2000/svg" class="animate-bounce" width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 16l-6-6h12z"/>
+        </svg>
+      </a>
+
       <!-- Composed sections -->
       <HomeSection />
-      <GallerySection />
       <DetailsSection />
+      <GallerySection />
       <AgendaSection />
       <LocationSection :mapUrl="mapUrl" />
       <RSVPSection v-model="rsvp" :email="rsvpEmail" />
@@ -98,6 +107,24 @@ function diffParts(ms) {
 }
 const timeLeft = computed(() => diffParts(targetDate.getTime() - now.value));
 const isPast = computed(() => targetDate.getTime() - now.value <= 0);
+
+// Hide scroll indicator at bottom
+const atBottom = ref(false);
+function updateAtBottom() {
+  const threshold = 8; // px tolerance
+  const scrolled = window.innerHeight + window.scrollY;
+  const full = document.documentElement.scrollHeight;
+  atBottom.value = scrolled >= full - threshold;
+}
+onMounted(() => {
+  updateAtBottom();
+  window.addEventListener('scroll', updateAtBottom, { passive: true });
+  window.addEventListener('resize', updateAtBottom);
+});
+onUnmounted(() => {
+  window.removeEventListener('scroll', updateAtBottom);
+  window.removeEventListener('resize', updateAtBottom);
+});
 </script>
 
 <style>

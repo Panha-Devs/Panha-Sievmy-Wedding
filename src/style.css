@@ -4,3 +4,8 @@
 html, body, #app {
 	background-color: #000;
 }
+
+/* Balance heading text wrapping across lines (progressive enhancement) */
+.balance {
+	text-wrap: balance;
+}

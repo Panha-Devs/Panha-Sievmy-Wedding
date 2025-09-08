@@ -3,7 +3,7 @@
     <h2 class="text-4xl md:text-6xl font-khmer text-yellow-200">
       កម្មវិធី
     </h2>
-    <ul class="mt-6 text-left mx-auto text-yellow-200 font-khmer-kh text-lg md:text-2xl space-y-3 md:space-y-4">
+    <ul class="mt-6 text-left mx-auto text-yellow-200 font-khmer-kh space-y-3 md:space-y-4 text-[clamp(1rem,3.5vw,1.5rem)]">
       <li class="flex items-start gap-3"><span class="text-yellow-400">•</span><span>៦:៣០ ព្រឹក — រៀបចំ និងទទួលភ្ញៀវ</span></li>
       <li class="flex items-start gap-3"><span class="text-yellow-400">•</span><span>៧:០០ ព្រឹក — ពិធីហែជំនូន (កំណត់)</span></li>
       <li class="flex items-start gap-3"><span class="text-yellow-400">•</span><span>៨:៣០ ព្រឹក — ពិធីបំពាក់ចិញ្ចៀន</span></li>
