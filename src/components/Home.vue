@@ -40,7 +40,7 @@ onMounted(() => {
 
     <!-- Overlay (optional, for better readability) -->
     <div
-      class="absolute top-0 left-0 w-full h-full bg-black/70 bg-opacity-50"
+      class="absolute top-0 left-0 w-full h-full bg-black/30"
     ></div>
 
     <!-- Content -->

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="relative w-full h-screen overflow-hidden bg-black/70 bg-opacity-50"
+    class="relative w-full h-screen overflow-hidden"
   >
     <!-- Background Video -->
     <video
@@ -16,7 +16,33 @@
     <!-- Content -->
     <div
       class="relative z-10 flex flex-col items-center justify-start text-white text-center px-6 pt-20 pb-20 overflow-y-scroll h-screen"
+      style="background: rgba(0,0,0,0.35);"
     >
+      <!-- Volume toggle button -->
+      <button
+        @click="toggleMute"
+        class="fixed bottom-4 right-4 w-12 h-12 flex items-center justify-center rounded-full bg-black/40 hover:bg-black/60 border border-yellow-400 text-yellow-300 shadow z-20"
+        :aria-label="isMuted ? 'Unmute background music' : 'Mute background music'"
+        title="Toggle sound"
+      >
+        <span v-if="isMuted" class="inline-block" aria-hidden="true">
+          <!-- volume off icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+            <path d="M16.5 12c0-1.54-.58-2.94-1.53-4l1.42-1.42A7.943 7.943 0 0 1 18.5 12c0 1.98-.72 3.78-1.91 5.18l-1.41-1.41A5.98 5.98 0 0 0 16.5 12z"/>
+            <path d="M14 12c0-.88-.36-1.68-.94-2.26l1.42-1.42A5.98 5.98 0 0 1 16 12c0 .88-.18 1.72-.52 2.48l-1.42-1.42c.25-.33.39-.74.39-1.06z"/>
+            <path d="M3 9v6h4l5 5V4L7 9H3z"/>
+            <path d="M3 3l18 18-1.41 1.41L1.59 4.41 3 3z"/>
+          </svg>
+        </span>
+        <span v-else class="inline-block" aria-hidden="true">
+          <!-- volume on icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+            <path d="M3 9v6h4l5 5V4L7 9H3z"/>
+            <path d="M14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+            <path d="M14 7.77v8.46c1.76-.77 3-2.53 3-4.23s-1.24-3.46-3-4.23z"/>
+          </svg>
+        </span>
+      </button>
       <h2 class="text-4xl md:text-6xl mt-20 font-khmer text-yellow-200">
         សិរីមង្គលអាពាហ៍ពិពាហ៍
       </h2>
@@ -86,18 +112,6 @@
         <h2 class="text-4xl md:text-6xl mt-20 font-khmer text-yellow-200">
           សិរីមង្គលអាពាហ៍ពិពាហ៍
         </h2>
-        <!-- <div
-          class="flex justify-between items-center mt-20 font-khmer text-yellow-200 text-2xl md:text-3xl md:w-1/2 mx-auto"
-        >
-          <div>
-            <div>លោក ណៃ សាលឿត</div>
-            <div>លោកស្រី រឿន ធៀប</div>
-          </div>
-          <div>
-            <div>លោក សេន គ្រី</div>
-            <div>លោកស្រី ឈិន មុំ</div>
-          </div>
-        </div> -->
         <div  
           class="text-yellow-400 text-xl md:text-3xl font-khmer-kh mt-20 md:w-1/2 text-center mx-auto"
         >
@@ -158,46 +172,7 @@
             </g>
           </svg>
         </button>
-      </section>
-      <!-- <section class="mt-40">
-        <h2
-          class="text-5xl md:text-6xl mt-20 font-khmer text-yellow-200 mb-5 md:mb-20"
-        >
-          វិចិត្រសាល
-        </h2>
-        <div class="flex justify-center gap-2 md:gap-5">
-          <div>
-            <img
-              class="md:w-96 w-60"
-              src="/src/assets/photo_2025-03-05_22-07-42.jpg"
-              alt=""
-            />
-          </div>
-          <div>
-            <img
-              class="md:w-96 w-60"
-              src="/src/assets/photo_2025-03-05_22-07-18.jpg"
-              alt=""
-            />
-          </div>
-        </div>
-        <div class="flex justify-center gap-2 md:gap-5 mt-2">
-          <div>
-            <img
-              class="md:w-96 w-60"
-              src="/src/assets/photo_2025-03-05_22-07-37.jpg"
-              alt=""
-            />
-          </div>
-          <div>
-            <img
-              class="md:w-96 w-60"
-              src="/src/assets/photo_2025-03-05_22-07-47.jpg"
-              alt=""
-            />
-          </div>
-        </div>
-      </section> -->
+  </section>
       <section class="mt-40">
         <h2
           class="text-4xl md:text-6xl mt-20 font-khmer text-yellow-200 mb-5 md:mb-20"
@@ -209,15 +184,6 @@
           <div
             class="flex justify-center items-center text-center w-96 md:w-[600px] bg-yellow-200 p-3 rounded-lg font-khmer text-md md:text-2xl  text-gray-400"
           >
-            <!-- <div
-              @click="selectedDay = 'day22'"
-              :class="
-                selectedDay === 'day22' ? 'text-black bg-white w-40 h-10 md:w-60 items-center flex justify-center rounded-lg' : ''
-              "
-              class="cursor-pointer mr-10"
-            >
-              ២២ មីនា
-            </div> -->
             <div
               class="cursor-pointer text-white"
             >
@@ -227,101 +193,10 @@
 
           <!-- Display Information -->
           <div class="mt-5">
-            <!-- <p v-if="selectedDay === 'day22'">
-              <h2 class="text-3xl md:text-4xl mt-20 font-khmer text-yellow-200">
-               កម្មវិធីពេលរសៀល
-              </h2>
               <div class="mt-5">
                 <div class="border-4 border-yellow-500 w-12 h-12 rounded-full m-auto"></div>
                 <div class="border bg-yellow-500 border-yellow-500 w-1 h-12 m-auto"></div>
               </div>
-              <h2 class="text-2xl md:text-4xl font-khmer-kh text-white">
-               ម៉ោង២:០០រសៀល
-              </h2>
-              <h2 class="text-2xl md:text-4xl font-khmer-kh text-yellow-200">
-               ពិធីក្រុងពាលី
-              </h2>
-              <div class="border bg-yellow-500 border-yellow-500 w-1 h-16 mt-2 m-auto"></div>
-              <h2 class="text-2xl md:text-4xl font-khmer-kh text-white">
-               ម៉ោង៣:០០រសៀល
-              </h2>
-              <h2 class="text-2xl md:text-4xl font-khmer-kh text-yellow-200">
-               ពិធីសូត្រមន្តចម្រើនព្រះបរិត្ត
-              </h2>
-              <div class="border bg-yellow-500 border-yellow-500 w-1 h-16 mt-2 m-auto"></div>
-              <h2 class="text-2xl md:text-4xl font-khmer-kh text-white">
-               ម៉ោង៥:០០រសៀល
-              </h2>
-              <h2 class="text-2xl md:text-4xl font-khmer-kh text-yellow-200">
-                ពិធីកាត់ខាន់ស្លា
-              </h2>
-              <div class="border bg-yellow-500 border-yellow-500 w-1 h-16 mt-2 m-auto"></div>
-              <h2 class="text-2xl md:text-4xl font-khmer-kh text-white">
-                ម៉ោង៦:០០រសៀល
-              </h2>
-              <h2 class="text-2xl md:text-4xl font-khmer-kh text-yellow-200">
-               អញ្ជើញភ្ញៀវកិត្តិយសសេពសោយអាហារ
-              </h2>
-            </p> -->
-            <!-- <p v-if="selectedDay === 'day23'"> -->
-              <!-- <h2 class="text-3xl md:text-4xl mt-20 font-khmer text-yellow-200">
-               កម្មវិធីពេលព្រឹក
-              </h2>
-              <div class="mt-5">
-                <div class="border-4 border-yellow-500 w-12 h-12 rounded-full m-auto"></div>
-                <div class="border bg-yellow-500 border-yellow-500 w-1 h-12 m-auto"></div>
-              </div>
-              <h2 class="text-2xl md:text-4xl font-khmer-kh text-white">
-               ម៉ោង៦:៣០ព្រឹក
-              </h2>
-              <h2 class="text-2xl md:text-4xl font-khmer-kh text-yellow-200">
-               ជួបជុំភ្ញៀវកិត្តិយសទាំងអស់ដើម្បីរៀបហែជំនូន
-              </h2>
-              <div class="border bg-yellow-500 border-yellow-500 w-1 h-16 mt-2 m-auto"></div>
-              <h2 class="text-2xl md:text-4xl font-khmer-kh text-white">
-               ម៉ោង៧:០០ព្រឹក
-              </h2>
-              <h2 class="text-2xl md:text-4xl font-khmer-kh text-yellow-200">
-               ពិធីហែជំនូន (កំណត់)
-              </h2>
-              <div class="border bg-yellow-500 border-yellow-500 w-1 h-16 mt-2 m-auto"></div>
-              <h2 class="text-2xl md:text-4xl font-khmer-kh text-white">
-               ម៉ោង៨:៣០ព្រឹក
-              </h2>
-              <h2 class="text-2xl md:text-4xl font-khmer-kh text-yellow-200">
-               ពិធីបំពាក់ចិញ្ចៀន
-              </h2>
-              <div class="border bg-yellow-500 border-yellow-500 w-1 h-16 mt-2 m-auto"></div>
-              <h2 class="text-2xl md:text-4xl font-khmer-kh text-white">
-               ម៉ោង៩:០០ព្រឹក
-              </h2>
-              <h2 class="text-2xl md:text-4xl font-khmer-kh text-yellow-200">
-               ពិធីកាត់សក់បង្កក់សិរី
-              </h2>
-              <div class="border bg-yellow-500 border-yellow-500 w-1 h-16 mt-2 m-auto"></div>
-              <h2 class="text-2xl md:text-4xl font-khmer-kh text-white">
-               ម៉ោង១០:០០ព្រឹក
-              </h2>
-              <h2 class="text-2xl md:text-4xl font-khmer-kh text-yellow-200">
-               ពិធីក្រាបសំពះផ្ទឹម ចងដៃ និងបាចផ្កាស្លា
-              </h2>
-              <div class="border bg-yellow-500 border-yellow-500 w-1 h-16 mt-2 m-auto"></div>
-              <h2 class="text-2xl md:text-4xl font-khmer-kh text-white">
-               ម៉ោង១២:០០ថ្ងៃត្រង់
-              </h2>
-              <h2 class="text-2xl md:text-4xl font-khmer-kh text-yellow-200">
-                អញ្ជើញភ្ញៀវកិត្តិយសពិសារភោជនាហារថ្ងៃត្រង់
-              </h2>
-              <h2 class="text-3xl md:text-4xl mt-10 font-khmer text-yellow-200">
-               កម្មវិធីពេលល្ងាច
-              </h2> -->
-              <div class="mt-5">
-                <div class="border-4 border-yellow-500 w-12 h-12 rounded-full m-auto"></div>
-                <div class="border bg-yellow-500 border-yellow-500 w-1 h-12 m-auto"></div>
-              </div>
-              <!-- <h2 class="text-2xl md:text-4xl font-khmer-kh text-white">
-               ម៉ោង៤:០០ល្ងាចតទៅ
-              </h2> -->
               <h2 class="text-2xl md:text-4xl font-khmer-kh text-yellow-200">
                 អញ្ជើញភ្ញៀវកិត្តិយសពិសារភោជនាហារដោយមេត្រីភាព
               </h2>
@@ -338,8 +213,23 @@
   </div>
 </template>
 <script setup>
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 const selectedDay = ref("day22"); // Default selected day
+const isMuted = ref(false);
+
+function toggleMute() {
+  const el = document.getElementById("bgm");
+  if (!el) return;
+  el.muted = !el.muted;
+  isMuted.value = el.muted;
+}
+
+onMounted(() => {
+  const el = document.getElementById("bgm");
+  if (el) {
+    isMuted.value = !!el.muted;
+  }
+});
 </script>
 
 <style>
