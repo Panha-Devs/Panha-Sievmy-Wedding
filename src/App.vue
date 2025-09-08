@@ -1,27 +1,17 @@
 <script setup>
-import { ref } from "vue";
-import { useRouter } from "vue-router";
-import Home from "./components/Home.vue"; // Import Home component
-
-const showHome = ref(true);
-const router = useRouter();
-
-const goToContent = () => {
-  showHome.value = false; // Hide Home page
-  router.push("/content"); // Navigate to Content page
-};
+// Import the audio so Vite bundles it correctly and we can reference it safely.
+import bgm from "./assets/Westlife - Beautiful in White.mp3";
 </script>
 
 <template>
   <div>
-    <!-- Show Home component if showHome is true -->
-    <Home v-if="showHome" @openContent="goToContent" />
-    <audio class="hidden-audio" controls autoplay loop>
-      <source src="/src/assets/Westlife - Beautiful in White.mp3" type="audio/mpeg">
+    <router-view />
+    <!-- Hidden background music; started on user interaction from Home.vue -->
+    <audio id="bgm" class="hidden-audio" preload="auto" loop>
+      <source :src="bgm" type="audio/mpeg" />
     </audio>
-    <!-- Show router-view when Home is hidden -->
-    <router-view v-if="!showHome"></router-view>
   </div>
+
 </template>
 
 <style>

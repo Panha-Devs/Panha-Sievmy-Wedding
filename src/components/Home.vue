@@ -1,7 +1,27 @@
 <script setup>
-import { defineEmits } from "vue";
+import { onMounted } from "vue";
+import { useRouter } from "vue-router";
 
-const emit = defineEmits(["openContent"]);
+const router = useRouter();
+
+function startMusic() {
+  const el = document.getElementById("bgm");
+  if (el) {
+    // Attempt to play; ignore errors due to policies
+    el.play?.().catch(() => {});
+  }
+}
+
+function goToContent() {
+  startMusic();
+  router.push("/content");
+}
+
+// Pre-warm audio element by loading after mount (optional)
+onMounted(() => {
+  const el = document.getElementById("bgm");
+  el?.load?.();
+});
 </script>
 
 <template>
@@ -39,7 +59,7 @@ const emit = defineEmits(["openContent"]);
         ALL MY FRIENDS WITH HUNNI
       </h3>
       <button
-        @click="emit('openContent')"
+        @click="goToContent"
         class="mt-20 px-20 py-6 text-4xl md:text-6xl bg-[#390058] border border-yellow-400 rounded-full text-yellow-400 font-khmer-kh animate-pulse scale-animation"
       >
         បើកធៀប
@@ -47,7 +67,7 @@ const emit = defineEmits(["openContent"]);
       <div class="font-khmer pt-10 text-yellow-400 text-xl md:text-2xl">
         ចុចអេក្រង់ដើម្បីបើកធៀបអេឡិចត្រូនិច
       </div>
-    </div>
+  </div>
   </div>
 </template>
 
