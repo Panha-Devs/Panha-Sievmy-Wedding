@@ -1,72 +1,133 @@
 <template>
-  <section id="home" class="w-full max-w-6xl">
-    <!-- Title -->
-  <h2 class="balance leading-tight mt-6 md:mt-8 text-center font-khmer text-yellow-300 tracking-wide drop-shadow-[0_2px_2px_rgba(0,0,0,0.35)] text-[clamp(1.75rem,6vw,3.5rem)]">
-      សិរីមង្គលអាពាហ៍ពិពាហ៍
-    </h2>
+    <section id="home" class="w-full max-w-6xl">
+        <!-- Title -->
+        <h2
+            class="balance leading-tight mt-6 md:mt-8 text-center font-khmer text-yellow-300 tracking-wide drop-shadow-[0_2px_2px_rgba(0,0,0,0.35)] text-[clamp(1.75rem,6vw,3.5rem)]">
+            សិរីមង្គលអាពាហ៍ពិពាហ៍
+        </h2>
 
-    <!-- Names row with central monogram -->
-  <div class="mt-8 md:mt-10 font-khmer grid grid-cols-[1fr_auto_1fr] items-center gap-3 sm:gap-4 md:gap-14 lg:gap-24 xl:gap-32 2xl:gap-40">
-      <!-- Groom -->
-  <div class="text-center pr-3 md:pr-10 lg:pr-14 xl:pr-20 2xl:pr-24">
-        <div class="text-yellow-400 font-khmer-kh text-[clamp(1rem,3.2vw,1.5rem)]">កូនប្រុសនាម</div>
-        <div class="leading-tight mt-4 md:mt-7 text-[clamp(1.75rem,5.5vw,3rem)]">យឹម</div>
-        <div class="leading-tight mt-3 md:mt-6 text-[clamp(1.75rem,5.5vw,3rem)]">បញ្ញា</div>
-      </div>
+        <!-- Names row with central monogram -->
+        <div
+            class="mt-8 md:mt-10 font-khmer grid grid-cols-[1fr_auto_1fr] items-center gap-3 sm:gap-4 md:gap-14 lg:gap-24 xl:gap-32 2xl:gap-40">
+            <!-- Groom -->
+            <div class="text-center pr-3 md:pr-10 lg:pr-14 xl:pr-20 2xl:pr-24">
+                <div class="text-yellow-400 font-khmer-kh text-[clamp(1rem,3.2vw,1.5rem)]">កូនប្រុសនាម</div>
+                <div class="leading-tight mt-4 md:mt-7 text-[clamp(1.75rem,5.5vw,3rem)]">យឹម</div>
+                <div class="leading-tight mt-3 md:mt-6 text-[clamp(1.75rem,5.5vw,3rem)]">បញ្ញា</div>
+            </div>
 
-      <!-- Monogram / emblem -->
-      <div class="flex flex-col items-center justify-center my-1 md:my-0">
-        <div class="rounded-full border-2 border-yellow-300 flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 xl:w-24 xl:h-24 2xl:w-28 2xl:h-28">
-          <span class="text-yellow-200 text-[clamp(1.25rem,3.5vw,1.75rem)] md:text-3xl">♥</span>
+            <!-- Monogram / emblem -->
+            <div class="flex flex-col items-center justify-center my-1 md:my-0">
+                <div
+                    class="emblem rounded-full border-2 border-yellow-300 flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 xl:w-24 xl:h-24 2xl:w-28 2xl:h-28">
+                    <svg viewBox="0 0 100 100" class="monogram w-10/12 h-10/12" aria-hidden="true"
+                        preserveAspectRatio="xMidYMid meet">
+                        <defs>
+                            <linearGradient id="goldGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" stop-color="#ffe59e" />
+                                <stop offset="55%" stop-color="#f5c84c" />
+                                <stop offset="100%" stop-color="#d39e00" />
+                            </linearGradient>
+                            <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+                                <feGaussianBlur stdDeviation="1.2" result="coloredBlur" />
+                                <feMerge>
+                                    <feMergeNode in="coloredBlur" />
+                                    <feMergeNode in="SourceGraphic" />
+                                </feMerge>
+                            </filter>
+                        </defs>
+                        <!-- Centered monogram: P & S -->
+                        <g class="monogram-text" transform="translate(0,4)" filter="url(#softGlow)">
+                            <text x="50" y="58" text-anchor="middle" fill="url(#goldGrad)" stroke="#f5c84c"
+                                stroke-width="0.8" paint-order="stroke" font-family="'Lavishly Yours', cursive">
+                                <tspan font-size="50">P</tspan>
+                                <tspan dx="2" dy="7" font-size="26">&amp;</tspan>
+                                <tspan dx="2" dy="-7" font-size="50">S</tspan>
+                            </text>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Bride -->
+            <div class="text-center pl-3 md:pl-10 lg:pl-14 xl:pl-20 2xl:pl-24">
+                <div class="text-yellow-400 font-khmer-kh text-[clamp(1rem,3.2vw,1.5rem)]">កូនស្រីនាម</div>
+                <div class="leading-tight mt-4 md:mt-7 text-[clamp(1.75rem,5.5vw,3rem)]">ឃៀង</div>
+                <div class="leading-tight mt-3 md:mt-6 text-[clamp(1.75rem,5.5vw,3rem)]">សៀវមី</div>
+            </div>
         </div>
-      </div>
 
-    <!-- Bride -->
-  <div class="text-center pl-3 md:pl-10 lg:pl-14 xl:pl-20 2xl:pl-24">
-        <div class="text-yellow-400 font-khmer-kh text-[clamp(1rem,3.2vw,1.5rem)]">កូនស្រីនាម</div>
-        <div class="leading-tight mt-4 md:mt-7 text-[clamp(1.75rem,5.5vw,3rem)]">ឃៀង</div>
-        <div class="leading-tight mt-3 md:mt-6 text-[clamp(1.75rem,5.5vw,3rem)]">សៀវមី</div>
-      </div>
-    </div>
+        <!-- Subheading and date -->
+        <div class="text-yellow-300 font-khmer-kh mt-10 md:mt-14 text-[clamp(1rem,3.5vw,1.5rem)]">
+            ដែលនឹងប្រព្រឹត្តទៅនៅ
+        </div>
+        <div
+            class="balance leading-snug mt-4 md:mt-6 font-khmer text-white home-text-shadow text-[clamp(1.5rem,5.5vw,3rem)]">
+            ថ្ងៃព្រហស្បតិ៍ ទី២៦ ខែមិថុនា ឆ្នាំ២០២៥
+        </div>
 
-    <!-- Subheading and date -->
-  <div class="text-yellow-300 font-khmer-kh mt-10 md:mt-14 text-[clamp(1rem,3.5vw,1.5rem)]">
-      ដែលនឹងប្រព្រឹត្តទៅនៅ
-    </div>
-  <div class="balance leading-snug mt-4 md:mt-6 font-khmer text-white home-text-shadow text-[clamp(1.5rem,5.5vw,3rem)]">
-      ថ្ងៃព្រហស្បតិ៍ ទី២៦ ខែមិថុនា ឆ្នាំ២០២៥
-    </div>
+        <!-- Call to action: open map -->
+        <a href="#location"
+            class="gold-btn inline-flex items-center gap-2 mt-8 md:mt-10 px-6 py-3 rounded-full font-khmer-kh border-2 mx-auto text-[clamp(1rem,3.5vw,1.25rem)]">
+            <span>បើកផែនទី</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                    d="M20.5 3l-5.5 2-6-2-6.5 2.2v15.3l6.5-2.2 6 2 6.5-2.3v-15zm-12 1.5l5 1.7v12.3l-5-1.7v-12.3zm-5 1.6l3-1v12.3l-3 1v-12.3zm16 12.8l-3 1.1v-12.4l3-1v12.3z" />
+            </svg>
+        </a>
 
-    <!-- Call to action: open map -->
-  <a href="#location" class="gold-btn inline-flex items-center gap-2 mt-8 md:mt-10 px-6 py-3 rounded-full font-khmer-kh border-2 mx-auto text-[clamp(1rem,3.5vw,1.25rem)]">
-      <span>បើកផែនទី</span>
-      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 3l-5.5 2-6-2-6.5 2.2v15.3l6.5-2.2 6 2 6.5-2.3v-15zm-12 1.5l5 1.7v12.3l-5-1.7v-12.3zm-5 1.6l3-1v12.3l-3 1v-12.3zm16 12.8l-3 1.1v-12.4l3-1v12.3z"/></svg>
-    </a>
-
-  </section>
+    </section>
 </template>
 
 <style scoped>
 .home-text-shadow {
-  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
 }
 
 .gold-btn {
-  color: #ffffff;
-  background: rgba(255, 204, 0, 0.15);
-  border-color: #f5c84c;
-  box-shadow:
-    inset 0 0 12px rgba(255, 220, 120, 0.35),
-    0 2px 8px rgba(0, 0, 0, 0.25),
-    0 0 0 1px rgba(245, 200, 76, 0.25);
-  backdrop-filter: blur(1px);
-  transition: all 200ms ease;
+    color: #ffffff;
+    background: rgba(255, 204, 0, 0.15);
+    border-color: #f5c84c;
+    box-shadow:
+        inset 0 0 12px rgba(255, 220, 120, 0.35),
+        0 2px 8px rgba(0, 0, 0, 0.25),
+        0 0 0 1px rgba(245, 200, 76, 0.25);
+    backdrop-filter: blur(1px);
+    transition: all 200ms ease;
 }
+
 .gold-btn:hover {
-  background: rgba(255, 220, 120, 0.22);
-  box-shadow:
-    inset 0 0 16px rgba(255, 230, 150, 0.5),
-    0 3px 12px rgba(0, 0, 0, 0.3),
-    0 0 0 1px rgba(245, 200, 76, 0.35);
+    background: rgba(255, 220, 120, 0.22);
+    box-shadow:
+        inset 0 0 16px rgba(255, 230, 150, 0.5),
+        0 3px 12px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(245, 200, 76, 0.35);
+}
+
+/* Monogram animations */
+.emblem {
+    animation: floaty 6s ease-in-out infinite;
+    box-shadow: 0 0 0 0 rgba(245, 200, 76, 0.0);
+}
+.emblem::after {
+    content: "";
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    border-radius: 9999px;
+    box-shadow: 0 0 16px 2px rgba(245, 200, 76, 0.35);
+    filter: blur(1px);
+}
+.monogram-text {
+    transform-origin: 50% 50%;
+    animation: pulse-soft 4.5s ease-in-out infinite;
+}
+@keyframes pulse-soft {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+}
+@keyframes floaty {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
 }
 </style>
