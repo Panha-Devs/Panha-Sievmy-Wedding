@@ -1,1 +1,6 @@
 @import "tailwindcss";
+
+/* Prevent white flash during transitions by setting a dark base background */
+html, body, #app {
+	background-color: #000;
+}
