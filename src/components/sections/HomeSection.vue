@@ -63,7 +63,7 @@
         </div>
         <div
             class="balance leading-snug mt-4 md:mt-6 font-khmer text-white home-text-shadow text-[clamp(1.5rem,5.5vw,3rem)]">
-            ថ្ងៃព្រហស្បតិ៍ ទី២៦ ខែមិថុនា ឆ្នាំ២០២៥
+            ថ្ងៃអាទិត្យ ទី៣០ ខែវិច្ឆកា ឆ្នាំ២០២៥
         </div>
 
         <!-- Call to action: open map -->
