@@ -58,8 +58,11 @@ onMounted(() => {
 
 <template>
   <div class="relative w-full h-screen overflow-hidden">
-  <!-- Magic stars layer -->
-    <div ref="starLayer" class="pointer-events-none absolute inset-0 z-30"></div>
+    <!-- Magic stars layer -->
+    <div
+      ref="starLayer"
+      class="pointer-events-none absolute inset-0 z-30"
+    ></div>
     <!-- Background Video -->
     <video
       class="absolute top-0 left-0 w-full h-full object-cover z-0"
@@ -68,21 +71,23 @@ onMounted(() => {
       muted
       playsinline
     >
-      <source src="/src/assets/video1.mp4" type="video/mp4" />
+      <source src="/media/video1.mp4" type="video/mp4" />
       Your browser does not support the video tag.
     </video>
 
     <!-- Overlay (optional, for better readability) -->
-    <div
-      class="absolute top-0 left-0 w-full h-full bg-black/30 z-10"
-    ></div>
+    <div class="absolute top-0 left-0 w-full h-full bg-black/30 z-10"></div>
 
     <!-- Content -->
     <div
       class="relative z-20 flex flex-col items-center justify-center h-full text-white text-center px-6 mt-[-10px]"
     >
       <h1 class="text-4xl md:text-5xl font-bold pt-20">
-        <img src="/src/assets/ov.png" alt="" class="w-24 h-24 md:w-48 md:h-48"/>
+        <img
+          src="/src/assets/ov.png"
+          alt=""
+          class="w-24 h-24 md:w-48 md:h-48"
+        />
       </h1>
       <p class="text-3xl md:text-4xl mt-10 font-khmer text-yellow-300">
         សូមគោរពអញ្ជើញ
@@ -101,7 +106,7 @@ onMounted(() => {
       <div class="font-khmer pt-10 text-yellow-400 text-xl md:text-2xl">
         ចុចអេក្រង់ដើម្បីបើកធៀបអេឡិចត្រូនិច
       </div>
-  </div>
+    </div>
   </div>
 </template>
 
@@ -138,19 +143,32 @@ onMounted(() => {
   top: calc(var(--y) - var(--size) / 2);
   width: var(--size);
   height: var(--size);
-  background: radial-gradient(circle, #fde047 0%, #facc15 60%, rgba(250, 204, 21, 0) 70%);
+  background: radial-gradient(
+    circle,
+    #fde047 0%,
+    #facc15 60%,
+    rgba(250, 204, 21, 0) 70%
+  );
   border-radius: 50%;
   filter: drop-shadow(0 0 6px rgba(250, 204, 21, 0.8));
   animation: fly var(--dur) ease-out forwards, fade var(--dur) ease-out forwards;
 }
 
 @keyframes fly {
-  from { transform: translate(0, 0) scale(1); }
-  to { transform: translate(var(--dx), var(--dy)) scale(0.6); }
+  from {
+    transform: translate(0, 0) scale(1);
+  }
+  to {
+    transform: translate(var(--dx), var(--dy)) scale(0.6);
+  }
 }
 
 @keyframes fade {
-  from { opacity: 1; }
-  to { opacity: 0; }
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
 </style>

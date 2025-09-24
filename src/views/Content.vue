@@ -1,58 +1,102 @@
 <template>
-  <div class="relative w-full min-h-screen overflow-hidden">
-    <!-- Background Video -->
-    <video class="fixed top-0 left-0 w-full h-full object-cover z-0" autoplay loop muted playsinline>
-      <source src="/src/assets/video1.mp4" type="video/mp4" />
-    </video>
-
-    <!-- Content overlay and sections -->
-    <div class="relative z-10 flex flex-col items-center text-white text-center px-6 pt-24 pb-24" style="background: rgba(0,0,0,0.35);">
-      <!-- Volume toggle button -->
-      <button
-        @click="toggleMute"
-        class="fixed bottom-4 right-4 w-12 h-12 flex items-center justify-center rounded-full bg-black/40 hover:bg-black/60 border border-yellow-400 text-yellow-300 shadow z-20"
-        :aria-label="isMuted ? 'Unmute background music' : 'Mute background music'"
-        title="Toggle sound"
+  <div class="content-wrapper">
+    <!-- Main Content - No loading screen, let MagicTransition handle the animation -->
+    <div class="relative w-full min-h-screen overflow-hidden">
+      <!-- Background Video -->
+      <video
+        ref="videoRef"
+        class="fixed top-0 left-0 w-full h-full object-cover z-0"
+        autoplay
+        loop
+        muted
+        playsinline
       >
-        <span v-if="isMuted" class="inline-block" aria-hidden="true">
-          <!-- volume off icon -->
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
-            <path d="M16.5 12c0-1.54-.58-2.94-1.53-4l1.42-1.42A7.943 7.943 0 0 1 18.5 12c0 1.98-.72 3.78-1.91 5.18l-1.41-1.41A5.98 5.98 0 0 0 16.5 12z"/>
-            <path d="M14 12c0-.88-.36-1.68-.94-2.26l1.42-1.42A5.98 5.98 0 0 1 16 12c0 .88-.18 1.72-.52 2.48l-1.42-1.42c.25-.33.39-.74.39-1.06z"/>
-            <path d="M3 9v6h4l5 5V4L7 9H3z"/>
-            <path d="M3 3l18 18-1.41 1.41L1.59 4.41 3 3z"/>
-          </svg>
-        </span>
-        <span v-else class="inline-block" aria-hidden="true">
-          <!-- volume on icon -->
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
-            <path d="M3 9v6h4l5 5V4L7 9H3z"/>
-            <path d="M14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
-            <path d="M14 7.77v8.46c1.76-.77 3-2.53 3-4.23s-1.24-3.46-3-4.23z"/>
-          </svg>
-        </span>
-      </button>
+        <source src="/media/video1.mp4" type="video/mp4" />
+      </video>
 
-      <!-- Global scroll indicator (sticks to entire content) -->
-  <a href="#gallery" aria-label="Scroll down"
-     class="fixed bottom-5 left-1/2 -translate-x-1/2 text-yellow-300 z-20 transition-opacity duration-200"
-     :class="{ 'opacity-0 pointer-events-none': atBottom }">
-        <svg xmlns="http://www.w3.org/2000/svg" class="animate-bounce" width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 16l-6-6h12z"/>
-        </svg>
-      </a>
+      <!-- Content overlay and sections -->
+      <div
+        class="relative z-10 flex flex-col items-center text-white text-center px-6 pt-24 pb-24"
+        style="background: rgba(0, 0, 0, 0.35)"
+      >
+        <!-- Volume toggle button -->
+        <button
+          @click="toggleMute"
+          class="fixed bottom-4 right-4 w-12 h-12 flex items-center justify-center rounded-full bg-black/40 hover:bg-black/60 border border-yellow-400 text-yellow-300 shadow z-20"
+          :aria-label="
+            isMuted ? 'Unmute background music' : 'Mute background music'
+          "
+          title="Toggle sound"
+        >
+          <span v-if="isMuted" class="inline-block" aria-hidden="true">
+            <!-- volume off icon -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              width="28"
+              height="28"
+              fill="currentColor"
+            >
+              <path
+                d="M16.5 12c0-1.54-.58-2.94-1.53-4l1.42-1.42A7.943 7.943 0 0 1 18.5 12c0 1.98-.72 3.78-1.91 5.18l-1.41-1.41A5.98 5.98 0 0 0 16.5 12z"
+              />
+              <path
+                d="M14 12c0-.88-.36-1.68-.94-2.26l1.42-1.42A5.98 5.98 0 0 1 16 12c0 .88-.18 1.72-.52 2.48l-1.42-1.42c.25-.33.39-.74.39-1.06z"
+              />
+              <path d="M3 9v6h4l5 5V4L7 9H3z" />
+              <path d="M3 3l18 18-1.41 1.41L1.59 4.41 3 3z" />
+            </svg>
+          </span>
+          <span v-else class="inline-block" aria-hidden="true">
+            <!-- volume on icon -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              width="28"
+              height="28"
+              fill="currentColor"
+            >
+              <path d="M3 9v6h4l5 5V4L7 9H3z" />
+              <path
+                d="M14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"
+              />
+              <path
+                d="M14 7.77v8.46c1.76-.77 3-2.53 3-4.23s-1.24-3.46-3-4.23z"
+              />
+            </svg>
+          </span>
+        </button>
 
-      <!-- Composed sections -->
-      <HomeSection />
-      <DetailsSection />
-      <GallerySection />
-      <AgendaSection />
-      <LocationSection :mapUrl="mapUrl" />
-      <RSVPSection v-model="rsvp" :email="rsvpEmail" />
-      <CountdownSection :timeLeft="timeLeft" :isPast="isPast" />
+        <!-- Global scroll indicator (sticks to entire content) -->
+        <a
+          href="#gallery"
+          aria-label="Scroll down"
+          class="fixed bottom-5 left-1/2 -translate-x-1/2 text-yellow-300 z-20 transition-opacity duration-200"
+          :class="{ 'opacity-0 pointer-events-none': atBottom }"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="animate-bounce"
+            width="28"
+            height="28"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+          >
+            <path d="M12 16l-6-6h12z" />
+          </svg>
+        </a>
+
+        <!-- Composed sections -->
+        <HomeSection />
+        <DetailsSection />
+        <GallerySection />
+        <AgendaSection />
+        <LocationSection :mapUrl="mapUrl" />
+        <RSVPSection v-model="rsvp" :email="rsvpEmail" />
+        <CountdownSection :timeLeft="timeLeft" :isPast="isPast" />
+      </div>
     </div>
   </div>
-  
 </template>
 
 <script setup>
@@ -64,6 +108,9 @@ import GallerySection from "../components/sections/GallerySection.vue";
 import HomeSection from "../components/sections/HomeSection.vue";
 import LocationSection from "../components/sections/LocationSection.vue";
 import RSVPSection from "../components/sections/RSVPSection.vue";
+
+// Video reference for controls
+const videoRef = ref(null);
 
 // Volume toggle
 const isMuted = ref(false);
@@ -118,12 +165,12 @@ function updateAtBottom() {
 }
 onMounted(() => {
   updateAtBottom();
-  window.addEventListener('scroll', updateAtBottom, { passive: true });
-  window.addEventListener('resize', updateAtBottom);
+  window.addEventListener("scroll", updateAtBottom, { passive: true });
+  window.addEventListener("resize", updateAtBottom);
 });
 onUnmounted(() => {
-  window.removeEventListener('scroll', updateAtBottom);
-  window.removeEventListener('resize', updateAtBottom);
+  window.removeEventListener("scroll", updateAtBottom);
+  window.removeEventListener("resize", updateAtBottom);
 });
 </script>
 
